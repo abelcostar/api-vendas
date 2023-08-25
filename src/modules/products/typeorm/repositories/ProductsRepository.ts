@@ -1,6 +1,5 @@
 import {EntityRepository, Repository} from "typeorm"
 import Product from "../entities/Product"
-import { promises } from "dns"
 
 @EntityRepository(Product)
 export class ProductRepository extends Repository<Product> {
