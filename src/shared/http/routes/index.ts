@@ -1,4 +1,4 @@
-import productsRouter from "@modules/products/routes/products.routs";
+import productsRouter from "@modules/products/routes/products.routes";
 import { Router, response } from "express";
 import { request } from "http";
 
