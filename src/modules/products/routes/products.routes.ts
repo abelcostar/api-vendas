@@ -1,13 +1,57 @@
-import { Router } from "express";
-import ProductController from "../controllers/ProductsController";
+import { Router } from 'express';
+import ProductsController from '../controllers/ProductsController';
+import { celebrate, Joi, Segments } from 'celebrate';
 
-const productsRouter = Router()
-const productController = new ProductController()
+const productsRouter = Router();
+const productsController = new ProductsController();
 
-productsRouter.get('/', productController.index)
-productsRouter.get('/:id', productController.show)
-productsRouter.post('/', productController.create)
-productsRouter.put('/:id', productController.update)
-productsRouter.delete('/:id', productController.delete)
+productsRouter.get('/', productsController.index);
 
-export default productsRouter
+productsRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  productsController.show,
+);
+
+productsRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      price: Joi.number().precision(2).required(),
+      quantity: Joi.number().required(),
+    },
+  }),
+  productsController.create,
+);
+
+productsRouter.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      price: Joi.number().precision(2).required(),
+      quantity: Joi.number().required(),
+    },
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  productsController.update,
+);
+
+productsRouter.delete(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  productsController.delete,
+);
+
+export default productsRouter;
