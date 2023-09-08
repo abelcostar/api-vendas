@@ -1,11 +1,11 @@
-import { Router } from 'express'
-import { celebrate, Joi, Segments } from 'celebrate'
-import UsersController from '../controllers/UserController'
+import { Router } from 'express';
+import { celebrate, Joi, Segments } from 'celebrate';
+import UsersController from '../controllers/UserController';
 
 const usersRouter = Router();
-const usersController = new UsersController()
+const usersController = new UsersController();
 
-usersRouter.get('/', usersController.index)
+usersRouter.get('/', usersController.index);
 
 usersRouter.post(
   '/',
@@ -14,9 +14,9 @@ usersRouter.post(
       name: Joi.string().required(),
       email: Joi.string().email().required(),
       password: Joi.string().required(),
-    }
+    },
   }),
-  usersController.create
+  usersController.create,
 );
 
-export default usersRouter
+export default usersRouter;
