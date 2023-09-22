@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import ListUserService from '../services/ListUserService';
 import { Request, Response } from 'express';
 import CreateUserService from '../services/CreateUserService';
@@ -5,6 +6,8 @@ import CreateUserService from '../services/CreateUserService';
 export default class UsersController {
   public async index(request: Request, response: Response): Promise<Response> {
     const listUser = new ListUserService();
+
+    console.log(request.user.id)
 
     const users = await listUser.execute();
 
