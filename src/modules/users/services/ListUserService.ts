@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 //SERVIÇO PARA LISTAR OS USUARIOS
 
 import { getCustomRepository } from "typeorm"

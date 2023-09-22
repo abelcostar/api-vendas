@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 //SERVIÇO PARA DELETAR UM PRODUTO
 
 import { getCustomRepository } from "typeorm"

@@ -16,6 +16,8 @@ export default function isAuthenticated (request: Request, response: Response, n
   try {
     const decodeToken = verify(token, authConfig.jwt.secret)
 
+    console.log(decodeToken)
+
     return next()
   } catch {
     throw new AppError('Invalid JWT Token')
